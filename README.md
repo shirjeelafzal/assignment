@@ -1,6 +1,6 @@
 # Project: Groq-based AI Summarization and Study Plan Generator
 
-This project uses the Groq API to summarize sections of a book and generate personalized study plans. The project includes two main tasks:
+This project uses either the Groq API or OpenAI API to summarize sections of a book and generate personalized study plans. The project includes two main tasks:
 - **Task 1**: Summarizing the book *Crime and Punishment* by chunking text, generating intermediate summaries, and combining them into a final summary.
 - **Task 2**: Creating a customized study plan based on student details and preferences using a structured prompt template.
 
@@ -9,7 +9,9 @@ GitHub Repository Link: [assignment](https://github.com/shirjeelafzal/assignment
 
 ## Prerequisites
 - Python 3.8+
-- [Groq API Key](https://console.groq.com/) – You need a Groq account and an API key to access the language model.
+- API Key for either Groq or OpenAI:
+  - [Groq API Key](https://console.groq.com/) – You need a Groq account and an API key to access the language model.
+  - OR [OpenAI API Key](https://platform.openai.com/account/api-keys) – You need an OpenAI account and an API key if you wish to use OpenAI instead.
 
 ## Installation Guide
 
@@ -35,11 +37,13 @@ GitHub Repository Link: [assignment](https://github.com/shirjeelafzal/assignment
 
 4. **Environment Variables**:
    - Rename `sample.env` to `.env`.
-   - In `.env`, replace `YOUR_API_KEY` with your actual Groq or OpenAI API key.
+   - In `.env`, replace `YOUR_API_KEY` with your actual Groq or OpenAI API key, depending on which service you plan to use.
    ```bash
-   GROQ_API_KEY=Your_API_KEY
-   OPENAI_API_KEY=Your_API_KEY
+   GROQ_API_KEY=Your_Groq_API_KEY   # If using the Groq API
+   OPENAI_API_KEY=Your_OpenAI_API_KEY   # If using the OpenAI API
    ```
+
+   > **Note**: Only one of these API keys is needed. If using Groq, you do not need to set an OpenAI key, and vice versa.
 
 5. **Download the Book PDF**:
    Download *Crime and Punishment* as a PDF from this link: [Download Crime and Punishment](https://drive.google.com/file/d/1WYaEoSozvUmJ_Lt5clAVs8NuSu43h9ps/view?usp=sharing). Save the file in the project root directory.
@@ -57,7 +61,7 @@ GitHub Repository Link: [assignment](https://github.com/shirjeelafzal/assignment
 After setup, open and run the notebooks in your environment.
 
 1. **Run Task 1**:
-   - In `task1.ipynb`, the document loader reads the "Crime and Punishment" PDF, splits it into chunks, and processes each chunk using the Groq API to create summaries.
+   - In `task1.ipynb`, the document loader reads the "Crime and Punishment" PDF, splits it into chunks, and processes each chunk using the Groq or OpenAI API to create summaries.
    - The summaries are batched and compiled into a final PDF file.
    
 2. **Run Task 2**:
@@ -68,4 +72,3 @@ After setup, open and run the notebooks in your environment.
 ## Troubleshooting
 - **Rate Limit Error**: If you encounter `rate_limit_exceeded` errors, pause the execution and try again after the specified cooldown period.
 - **PDF Encoding Error**: If a `UnicodeEncodeError` occurs, refer to solutions in the notebook that handle encoding issues using UTF-8.
-
